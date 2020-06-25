@@ -95,18 +95,40 @@ public class ServicioApp {
     }
 
     // 12) Agregar un Profesor:
-    @Transactional(rollbackOn = Exception.class)
-    public Profesor registrarProfesor(Long idEspecialidad, Profesor profesor) {
-        Especialidad especialidad = repositorioEspecialidad.obtenerEspecialidad(idEspecialidad);
-        profesor.setEspecialidad(especialidad);
-        return repositorioProfesor.save(profesor);
-    }
+	@Transactional(rollbackOn = Exception.class)
+	
+	public Profesor registrarProfesor(Profesor profesor) {
+		List<Especialidad> especialidad = null;
+		profesor.setEspecialidades(especialidad);
+		Profesor profe = repositorioProfesor.save(profesor);
+		return profe;
+	}
+	
+	//12.1) Agregar Especialidades al profesor:
+	@Transactional(rollbackOn = Exception.class)
+	public String addEspec(Long idProfesor, Long idEspecialidad){
+		
+		Especialidad e = repositorioEspecialidad.obtenerEspecialidad(idEspecialidad);
+	    Profesor p = repositorioProfesor.obtenerId(idProfesor);
+	    p.addEspecialidad(e);
+	    e.addProfesor(p);
+	    repositorioProfesor.save(p);
+	    repositorioEspecialidad.save(e);
+	    return "Funciona!";
 
-    // 12a) Agregar un Profesor sin ESP:
-    @Transactional(rollbackOn = Exception.class)
-    public Profesor registrarProfesorSE(Profesor profesor) {
-        return repositorioProfesor.save(profesor);
-    }
+	    }
+	
+	//12.2) Agregar Distritos al profesor:
+	@Transactional(rollbackOn = Exception.class)
+	public String addDist(Long idProfesor, Long idDistrito){
+		
+		Distrito d = repositorioDistrito.obtenerDistrito(idDistrito);
+	    Profesor p = repositorioProfesor.obtenerId(idProfesor);
+	    p.addDistrito(d);
+	    repositorioProfesor.save(p);
+	    return "Funciona!";
+
+	    }
 
     // 13) Buscar Profesor x Id:
     public Profesor obtenerProfesor(Long idProfesor) {

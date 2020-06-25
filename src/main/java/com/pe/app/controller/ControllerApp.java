@@ -89,17 +89,23 @@ public class ControllerApp {
         return servicioApp.obtenerEspecialidades();
     }
 
-    // 12)
-    @PostMapping("/profesor/registrar/{idEspecialidad}")
-    public Profesor registrarProfesor(@PathVariable(value = "idEspecialidad") Long idEspecialidad, @RequestBody Profesor profesor) {
-        return servicioApp.registrarProfesor(idEspecialidad, profesor);
-    }
-
-    //12a
-    @PostMapping("/profesor/registrarse")
-    public Profesor registrarProfesorSE(@RequestBody Profesor profesor) {
-        return servicioApp.registrarProfesorSE(profesor);
-    }
+	// 12)
+	@PostMapping("/profesor/registrar")
+	public Profesor registrarProfesor(@RequestBody Profesor profesor) {
+		return servicioApp.registrarProfesor(profesor);
+	}
+	
+	//12.1)
+	@GetMapping("/profesor/registrarEspec/{idProfesor}/{idEspecialidad}")
+	public String addEspec(@PathVariable(value = "idProfesor") Long idProfesor, @PathVariable(value = "idEspecialidad") Long idEspecialidad) {
+		return servicioApp.addEspec(idProfesor, idEspecialidad);
+	}
+	
+	//12.2)
+	@GetMapping("/profesor/registrarDist/{idProfesor}/{idDistrito}")
+	public String addDist(@PathVariable(value = "idProfesor") Long idProfesor, @PathVariable(value = "idDistrito") Long idDistrito) {
+		return servicioApp.addDist(idProfesor, idDistrito);
+	}
 
     // 13)
     @GetMapping("/profesor/buscar/id/{idProfesor}")
