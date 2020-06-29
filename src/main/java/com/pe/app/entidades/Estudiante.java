@@ -21,7 +21,7 @@ public class Estudiante {
 
     private String nomEstudiante;
 
-    private String apellidoProfesor;
+    private String apellidoEstudiante;
 
     private int nroReservas;
 
@@ -62,12 +62,12 @@ public class Estudiante {
         this.nomEstudiante = nomEstudiante;
     }
 
-    public String getApellidoProfesor() {
-        return apellidoProfesor;
+    public String getApellidoEstudiante() {
+        return apellidoEstudiante;
     }
 
-    public void setApellidoProfesor(String apellidoProfesor) {
-        this.apellidoProfesor = apellidoProfesor;
+    public void setApellidoEstudiante(String apellidoEstudiante) {
+        this.apellidoEstudiante = apellidoEstudiante;
     }
 
     public int getNroReservas() {
