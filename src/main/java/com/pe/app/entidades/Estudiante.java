@@ -1,11 +1,14 @@
 package com.pe.app.entidades;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,133 +16,122 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "TP_ESTUDIANTE")
 public class Estudiante {
-	//Hola mundo
-    // ***** ATRIBUTOS *****
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEstudiante;
 
-    private String nomEstudiante;
-
-    private String apellidoEstudiante;
-
-    private int nroReservas;
-
-    private int edad;
-
-    private String genero;
-
-    private String celularEstudiante;
-
-    private String claveEstudiante; // para log-in
-
-    private String codigoEstudiante; // codigo del centro de estudios
-
-    private String dniEstudiante;
-
-    private String direccionEstudiante;
-
-    @ManyToOne
-    @JoinColumn(name = "CODIGO_DISTRITO")
-    @JsonIgnore
-    private Distrito distrito;
-
-
-    // ***** GETTERS & SETTERS *****
-    public Long getIdEstudiante() {
-        return idEstudiante;
-    }
-
-    public void setIdEstudiante(Long idEstudiante) {
-        this.idEstudiante = idEstudiante;
-    }
-
-    public String getNomEstudiante() {
-        return nomEstudiante;
-    }
-
-    public void setNomEstudiante(String nomEstudiante) {
-        this.nomEstudiante = nomEstudiante;
-    }
-
-    public String getApellidoEstudiante() {
-        return apellidoEstudiante;
-    }
-
-    public void setApellidoEstudiante(String apellidoEstudiante) {
-        this.apellidoEstudiante = apellidoEstudiante;
-    }
-
-    public int getNroReservas() {
-        return nroReservas;
-    }
-
-    public void setNroReservas(int nroReservas) {
-        this.nroReservas = nroReservas;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getCelularEstudiante() {
-        return celularEstudiante;
-    }
-
-    public void setCelularEstudiante(String celularEstudiante) {
-        this.celularEstudiante = celularEstudiante;
-    }
-
-    public String getClaveEstudiante() {
-        return claveEstudiante;
-    }
-
-    public void setClaveEstudiante(String claveEstudiante) {
-        this.claveEstudiante = claveEstudiante;
-    }
-
-    public String getCodigoEstudiante() {
-        return codigoEstudiante;
-    }
-
-    public void setCodigoEstudiante(String codigoEstudiante) {
-        this.codigoEstudiante = codigoEstudiante;
-    }
-
-    public String getDniEstudiante() {
-        return dniEstudiante;
-    }
-
-    public void setDniEstudiante(String dniEstudiante) {
-        this.dniEstudiante = dniEstudiante;
-    }
-
-    public String getDireccionEstudiante() {
-        return direccionEstudiante;
-    }
-
-    public void setDireccionEstudiante(String direccionEstudiante) {
-        this.direccionEstudiante = direccionEstudiante;
-    }
-
-    public Distrito getDistrito() {
-        return distrito;
-    }
-
-    public void setDistrito(Distrito distrito) {
-        this.distrito = distrito;
-    }
+	// ***** ATRIBUTOS *****
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idEstudiante;
+	
+	private String nomEstudiante;
+	
+	private String apellidoEstudiante;
+	
+	private int nroReservas;
+	
+	private int edad;
+	
+	private String genero;
+	
+	private String celularEstudiante;
+	
+	private String claveEstudiante; // para log-in
+	
+	private String codigoEstudiante; // codigo del centro de estudios
+	
+	private String dniEstudiante;
+	
+	private String direccionEstudiante;
+	
+	// Distrito
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_DISTRITO")
+	@JsonIgnore
+	private Distrito distrito;
+	
+	// Contrato
+	@OneToMany
+	private List<Contrato> contratos;
+	
+	
+	// ***** GETTERS & SETTERS *****
+	public Long getIdEstudiante() {
+		return idEstudiante;
+	}
+	public void setIdEstudiante(Long idEstudiante) {
+		this.idEstudiante = idEstudiante;
+	}
+	public String getNomEstudiante() {
+		return nomEstudiante;
+	}
+	public void setNomEstudiante(String nomEstudiante) {
+		this.nomEstudiante = nomEstudiante;
+	}
+	public String getApellidoEstudiante() {
+		return apellidoEstudiante;
+	}
+	public void setApellidoEstudiante(String apellidoEstudiante) {
+		this.apellidoEstudiante = apellidoEstudiante;
+	}
+	public int getNroReservas() {
+		return nroReservas;
+	}
+	public void setNroReservas(int nroReservas) {
+		this.nroReservas = nroReservas;
+	}
+	public int getEdad() {
+		return edad;
+	}
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+	public String getGenero() {
+		return genero;
+	}
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+	public String getCelularEstudiante() {
+		return celularEstudiante;
+	}
+	public void setCelularEstudiante(String celularEstudiante) {
+		this.celularEstudiante = celularEstudiante;
+	}
+	public String getClaveEstudiante() {
+		return claveEstudiante;
+	}
+	public void setClaveEstudiante(String claveEstudiante) {
+		this.claveEstudiante = claveEstudiante;
+	}
+	public String getCodigoEstudiante() {
+		return codigoEstudiante;
+	}
+	public void setCodigoEstudiante(String codigoEstudiante) {
+		this.codigoEstudiante = codigoEstudiante;
+	}
+	public String getDniEstudiante() {
+		return dniEstudiante;
+	}
+	public void setDniEstudiante(String dniEstudiante) {
+		this.dniEstudiante = dniEstudiante;
+	}
+	public String getDireccionEstudiante() {
+		return direccionEstudiante;
+	}
+	public void setDireccionEstudiante(String direccionEstudiante) {
+		this.direccionEstudiante = direccionEstudiante;
+	}
+	public Distrito getDistrito() {
+		return distrito;
+	}
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
+	}
+	
 
 }

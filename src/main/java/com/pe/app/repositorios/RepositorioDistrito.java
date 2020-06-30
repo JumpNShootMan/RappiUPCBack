@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 import com.pe.app.entidades.Distrito;
 
 public interface RepositorioDistrito extends JpaRepository<Distrito, Long> {
-    @Query("SELECT d FROM Distrito d WHERE d.idDistrito=:idDistrito")
-    Distrito obtenerDistrito(@Param("idDistrito") Long idDistrito);
+	@Query("SELECT d FROM Distrito d WHERE d.idDistrito=:idDistrito")
+	Distrito obtenerDistrito(@Param("idDistrito") Long idDistrito);
 }
