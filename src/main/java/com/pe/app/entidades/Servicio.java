@@ -1,71 +1,127 @@
 package com.pe.app.entidades;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "TP_SERVICIO")
 public class Servicio {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idServicio;
-    private String nomServicio;
-    private String descripcionServicio;
-    private double costoServicio;
-    private double promedioCalificacion;
-    private int nroCalificacion;
+	// ***** ATRIBUTOS *****
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CODIGO_SERVICIO")
+	private Long idServicio;
+	
+	private String nomServicio;
+	
+	private String descripcionServicio;
+	
+	private double costoServicio;
+	
+	private String dia;
+	
+	private String hora;
+	
+	// Profesor
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_PROFESOR")
+	@JsonIgnore
+	private Profesor profesor;
+	
+	// Especialidad
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_ESPECIALIDAD")
+	@JsonIgnore
+	private Especialidad especialidad;
+	
+	// Contrato
+	@OneToMany
+	private List<Contrato> contratos;
 
-    //private Profesor profesor;
-    public Long getIdServicio() {
-        return idServicio;
-    }
+	
+	// ***** GETTERS & SETTERS *****
+	public Long getIdServicio() {
+		return idServicio;
+	}
 
-    public void setIdServicio(Long idServicio) {
-        this.idServicio = idServicio;
-    }
+	public void setIdServicio(Long idServicio) {
+		this.idServicio = idServicio;
+	}
 
-    public String getNomServicio() {
-        return nomServicio;
-    }
+	public String getNomServicio() {
+		return nomServicio;
+	}
 
-    public void setNomServicio(String nomServicio) {
-        this.nomServicio = nomServicio;
-    }
+	public void setNomServicio(String nomServicio) {
+		this.nomServicio = nomServicio;
+	}
 
-    public String getDescripcionServicio() {
-        return descripcionServicio;
-    }
+	public String getDescripcionServicio() {
+		return descripcionServicio;
+	}
 
-    public void setDescripcionServicio(String descripcionServicio) {
-        this.descripcionServicio = descripcionServicio;
-    }
+	public void setDescripcionServicio(String descripcionServicio) {
+		this.descripcionServicio = descripcionServicio;
+	}
 
-    public double getCostoServicio() {
-        return costoServicio;
-    }
+	public double getCostoServicio() {
+		return costoServicio;
+	}
 
-    public void setCostoServicio(double costoServicio) {
-        this.costoServicio = costoServicio;
-    }
+	public void setCostoServicio(double costoServicio) {
+		this.costoServicio = costoServicio;
+	}
 
-    public double getPromedioCalificacion() {
-        return promedioCalificacion;
-    }
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
 
-    public void setPromedioCalificacion(double promedioCalificacion) {
-        this.promedioCalificacion = promedioCalificacion;
-    }
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
+	}
 
-    public int getNroCalificacion() {
-        return nroCalificacion;
-    }
+	public String getDia() {
+		return dia;
+	}
 
-    public void setNroCalificacion(int nroCalificacion) {
-        this.nroCalificacion = nroCalificacion;
-    }
+	public void setDia(String dia) {
+		this.dia = dia;
+	}
 
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public Profesor getProfesor() {
+		return profesor;
+	}
+
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
+	}
+
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
+	}
+	
 }
