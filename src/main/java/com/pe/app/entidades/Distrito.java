@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "TP_DISTRITO")
 public class Distrito {
-	
 	// ***** ATRIBUTOS *****
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,10 +65,17 @@ public class Distrito {
 	}
     public List<Profesor> getProfesores() {
         return profesores;
+
     }
     public void setProfesores(List<Profesor> profesores) {
         this.profesores = profesores;
     }
 
+    public List<Profesor> getProfesores() {
+        return profesores;
+    }
+    public void setProfesores(List<Profesor> profesores) {
+        this.profesores = profesores;
+    }
 }
 

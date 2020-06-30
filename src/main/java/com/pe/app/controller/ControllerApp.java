@@ -22,6 +22,7 @@ import com.pe.app.servicios.ServicioApp;
 @RequestMapping("/api")
 public class ControllerApp {
 
+
 	@Autowired(required=true)
 	private ServicioApp servicioApp;
 	
@@ -112,16 +113,21 @@ public class ControllerApp {
 	}
 	
 	// 12.2)
+
+    
 	@GetMapping("/profesor/registrarEspec/{idProfesor}/{idEspecialidad}")
 	public String addEspec(@PathVariable(value = "idProfesor") Long idProfesor, @PathVariable(value = "idEspecialidad") Long idEspecialidad) {
 		return servicioApp.addEspec(idProfesor, idEspecialidad);
 	}
 	
+
 	//12.3)
+
 	@GetMapping("/profesor/registrarDist/{idProfesor}/{idDistrito}")
 	public String addDist(@PathVariable(value = "idProfesor") Long idProfesor, @PathVariable(value = "idDistrito") Long idDistrito) {
 		return servicioApp.addDist(idProfesor, idDistrito);
 	}
+
 	
 	// 13) 
 	@GetMapping("/profesor/buscar/id/{idProfesor}")

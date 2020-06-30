@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,6 +45,7 @@ public class Profesor {
 	
 	private float calificacion;
 	
+
 	// Especialidad
     @ManyToMany(mappedBy = "profesores")
     @JsonIgnoreProperties("especialidad")
@@ -63,6 +65,7 @@ public class Profesor {
 	private List<Servicio> servicios;
 	
 	// Agregar Especialidad:
+
     public void addEspecialidad(Especialidad especialidad) {
         if (this.especialidades == null) {
             this.especialidades = new ArrayList<>();
@@ -72,6 +75,7 @@ public class Profesor {
     }
     
     // Agregar Distrito:
+
     public void addDistrito(Distrito distrito) {
         if (this.distritos == null) {
             this.distritos = new ArrayList<>();
@@ -154,4 +158,5 @@ public class Profesor {
 		this.calificacion = calificacion;
 	}
 	
+
 }
