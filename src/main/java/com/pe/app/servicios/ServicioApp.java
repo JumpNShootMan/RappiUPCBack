@@ -74,8 +74,8 @@ public class ServicioApp {
 	// 4a) Agregar un Estudiante Sin Distrito:
 	@Transactional(rollbackOn = Exception.class)
 	public Estudiante registrarEstudianteSD(Estudiante estudiante) {
-		Distrito distrito = null;
-		estudiante.setDistrito(distrito);
+		//Distrito distrito = null;
+		//estudiante.setDistrito(distrito);
 		return repositorioEstudiante.save(estudiante);
 	}
 	
@@ -123,16 +123,7 @@ public class ServicioApp {
 	}
 	
 	// 12) Agregar un Profesor:
-	/*
-	@Transactional(rollbackOn = Exception.class)
-	public Profesor registrarProfesor(Long idEspecialidad ,Profesor profesor) {
-		Especialidad especialidad = repositorioEspecialidad.obtenerEspecialidad(idEspecialidad);
-		profesor.setEspecialidad(especialidad);
-		return repositorioProfesor.save(profesor);
-	}
-	*/
-	
-	// 12.1) Agregar un Profesor sin Nada:
+
 	@Transactional(rollbackOn = Exception.class)
 	public Profesor registrarProfesorSE(Profesor profesor) {
 		

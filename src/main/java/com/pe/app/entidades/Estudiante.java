@@ -45,7 +45,7 @@ public class Estudiante {
 	// Distrito
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_DISTRITO")
-	@JsonIgnore
+
 	private Distrito distrito;
 	
 	// Contrato

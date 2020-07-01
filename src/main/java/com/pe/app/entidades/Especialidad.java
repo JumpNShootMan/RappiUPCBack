@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -42,6 +43,7 @@ public class Especialidad {
 	            inverseJoinColumns = @JoinColumn(name = "CODIGO_PROFESOR", nullable = false))
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("especialidad")
+	@JsonIgnore
 	private List<Profesor> profesores;
 	
 	// Servicio:

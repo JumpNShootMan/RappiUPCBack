@@ -28,9 +28,6 @@ public class Distrito {
 	
 	private String nomProvincia;
 	
-	// Estudiante:
-	@OneToMany(mappedBy = "distrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Estudiante> estudiantes;
 	
 	//Profesores:
     @ManyToMany(mappedBy = "distritos")
@@ -57,12 +54,7 @@ public class Distrito {
 	public void setNomProvincia(String nomProvincia) {
 		this.nomProvincia = nomProvincia;
 	}
-	public List<Estudiante> getEstudiantes() {
-		return estudiantes;
-	}
-	public void setEstudiantes(List<Estudiante> estudiantes) {
-		this.estudiantes = estudiantes;
-	}
+
     public List<Profesor> getProfesores() {
         return profesores;
 
@@ -71,11 +63,5 @@ public class Distrito {
         this.profesores = profesores;
     }
 
-    public List<Profesor> getProfesores() {
-        return profesores;
-    }
-    public void setProfesores(List<Profesor> profesores) {
-        this.profesores = profesores;
-    }
 }
 
