@@ -71,11 +71,9 @@ public class ServicioApp {
 		return repositorioEstudiante.save(estudiante);
 	}
 	
-	// 4a) Agregar un Estudiante Sin Distrito:
+	// 4a) Agregar un Estudiante :
 	@Transactional(rollbackOn = Exception.class)
 	public Estudiante registrarEstudianteSD(Estudiante estudiante) {
-		//Distrito distrito = null;
-		//estudiante.setDistrito(distrito);
 		return repositorioEstudiante.save(estudiante);
 	}
 	
@@ -104,11 +102,6 @@ public class ServicioApp {
 	// 9) Agregar una Especialidad:
 	@Transactional(rollbackOn = Exception.class)
 	public Especialidad registrarEspecialidad(Especialidad especialidad) {
-		
-		// Especialidad:
-		List<Profesor> profesor = null;
-		especialidad.setProfesores(profesor);
-		
 		return repositorioEspecialidad.save(especialidad);
 	}
 	
@@ -123,32 +116,12 @@ public class ServicioApp {
 	}
 	
 	// 12) Agregar un Profesor:
-
+	
 	@Transactional(rollbackOn = Exception.class)
 	public Profesor registrarProfesorSE(Profesor profesor) {
-		
-		// Especialidad:
-		List<Especialidad> especialidad = null;
-		profesor.setEspecialidades(especialidad);
-		
-		// Distrito:
-		List<Distrito> distrito = null;
-		profesor.setDistritos(distrito);
-		
 		return repositorioProfesor.save(profesor);
 	}
 	
-	//12.2) Agregar Especialidades al profesor:
-	@Transactional(rollbackOn = Exception.class)
-	public String addEspec(Long idProfesor, Long idEspecialidad){		
-		Especialidad e = repositorioEspecialidad.obtenerEspecialidad(idEspecialidad);
-	    Profesor p = repositorioProfesor.obtenerId(idProfesor);
-	    p.addEspecialidad(e);
-	    e.addProfesor(p);
-	    repositorioProfesor.save(p);
-	    repositorioEspecialidad.save(e);
-	    return "Funciona!";
-	}
 	
 	//12.3) Agregar Distritos al profesor:
 	@Transactional(rollbackOn = Exception.class)
@@ -175,18 +148,10 @@ public class ServicioApp {
 		return repositorioProfesor.findAll();
 	}
 
+	
 	// 16) Agregar un Servicio:
 	@Transactional(rollbackOn = Exception.class)
-	public Servicio registrarServicio(Long idProfesor, Long idEspecialidad, Servicio servicio) {
-		
-		// Profesor:
-		Profesor profesor = repositorioProfesor.obtenerId(idProfesor);
-		servicio.setProfesor(profesor);
-		
-		// Especialidad:
-		Especialidad especialidad = repositorioEspecialidad.obtenerEspecialidad(idEspecialidad);
-		servicio.setEspecialidad(especialidad);
-		
+	public Servicio registrarServicio(Servicio servicio) {
 		return repositorioServicio.save(servicio);
 	}
 	
@@ -202,8 +167,8 @@ public class ServicioApp {
 	
 	// 19) Agregar un Contrato
 	@Transactional(rollbackOn = Exception.class)
-	public Contrato registrarContrato(Long idEstudiante, Contrato contrato) {
-		
+	public Contrato registrarContrato(Contrato contrato) {
+		/*
 		// Estudiante
 		Estudiante estudiante = repositorioEstudiante.obtener(idEstudiante);
 		contrato.setEstudiante(estudiante);
@@ -215,7 +180,7 @@ public class ServicioApp {
 		
 		// Servicio
 		Servicio servicio = null;
-		contrato.setServicio(servicio);
+		contrato.setServicio(servicio);*/
 		return repositorioContrato.save(contrato);
 	}
 	
@@ -245,7 +210,7 @@ public class ServicioApp {
 		contrato.setNomProfesor(servicio.getProfesor().getNomProfesor());
 		contrato.setDia(servicio.getDia());
 		contrato.setCosto(servicio.getCostoServicio());
-		contrato.setNombreEspecialidad(servicio.getEspecialidad().getNomEspecialidad());
+		contrato.setNombreEspecialidad(servicio.getNombreEspecialidad());
 		
 		// Guardar Contrato
 		repositorioContrato.save(contrato);

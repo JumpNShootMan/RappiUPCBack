@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +25,7 @@ public class Profesor {
 	// ***** ATRIBUTOS *****
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CODIGO_PROFESOR")
 	private Long idProfesor;
 	
 	private String nomProfesor;
@@ -42,12 +43,11 @@ public class Profesor {
 	private String generoProfesor;
 	
 	private float calificacion;
-	
 
 	// Especialidad
-    @ManyToMany(mappedBy = "profesores")
-    @JsonIgnoreProperties("especialidad")
-    private List<Especialidad> especialidades;
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_ESPECIALIDAD")
+    private Especialidad especialidad;
 
 	//Distritos a los que atiende
 	 @JoinTable(
@@ -58,27 +58,13 @@ public class Profesor {
     @JsonIgnoreProperties("profesor")
     private List<Distrito> distritos;
 	
-	// Servicio
-	@OneToMany
-	private List<Servicio> servicios;
 	
-	// Agregar Especialidad:
-
-    public void addEspecialidad(Especialidad especialidad) {
-        if (this.especialidades == null) {
-            this.especialidades = new ArrayList<>();
-        }
-
-        this.especialidades.add(especialidad);
-    }
-    
     // Agregar Distrito:
 
     public void addDistrito(Distrito distrito) {
         if (this.distritos == null) {
             this.distritos = new ArrayList<>();
         }
-
         this.distritos.add(distrito);
     }
 	
@@ -131,18 +117,12 @@ public class Profesor {
 	public void setGeneroProfesor(String generoProfesor) {
 		this.generoProfesor = generoProfesor;
 	}
-    public List<Especialidad> getEspecialidades() {
-        return especialidades;
+    public Especialidad getEspecialidad() {
+        return especialidad;
     }
-    public void setEspecialidades(List<Especialidad> especialidades) {
-        this.especialidades = especialidades;
+    public void setEspecialidades(Especialidad especialidad) {
+        this.especialidad = especialidad;
     }
-	public List<Servicio> getServicios() {
-		return servicios;
-	}
-	public void setServicios(List<Servicio> servicios) {
-		this.servicios = servicios;
-	}
     public List<Distrito> getDistritos() {
         return distritos;
     }

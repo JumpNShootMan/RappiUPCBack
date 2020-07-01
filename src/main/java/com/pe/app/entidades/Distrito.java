@@ -28,6 +28,7 @@ public class Distrito {
 	
 	private String nomProvincia;
 	
+
 	
 	//Profesores:
     @ManyToMany(mappedBy = "distritos")
