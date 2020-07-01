@@ -39,7 +39,7 @@ public class Servicio {
 	// Profesor
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PROFESOR")
-	@JsonIgnore
+
 	private Profesor profesor;
 		
 	private String nombreEspecialidad;
