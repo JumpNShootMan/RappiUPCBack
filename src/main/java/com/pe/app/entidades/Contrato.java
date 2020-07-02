@@ -50,14 +50,12 @@ public class Contrato {
 
 	// Estudiante
 	@ManyToOne
-	@JoinColumn(name = "id_estudiante")
-	@JsonIgnore
+	@JoinColumn(name = "idEstudiante")
 	private Estudiante estudiante;
 	
 	// Servicio
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_SERVICIO")
-	@JsonIgnore
 	private Servicio servicio;
 	
 	// ***** GETTERS & SETTERS *****
@@ -121,48 +119,48 @@ public class Contrato {
 		return nombreServicio;
 	}
 
-	public void setNombreServicio(String nombreServicio) {
-		this.nombreServicio = nombreServicio;
+	public void setNombreServicio() {
+		this.nombreServicio = this.servicio.getNomServicio();
 	}
 
 	public String getNomEstudiante() {
 		return nomEstudiante;
 	}
 
-	public void setNomEstudiante(String nomEstudiante) {
-		this.nomEstudiante = nomEstudiante;
+	public void setNomEstudiante() {
+		this.nomEstudiante = this.estudiante.getNomEstudiante();
 	}
 
 	public String getApellidoEstudiante() {
 		return apellidoEstudiante;
 	}
 
-	public void setApellidoEstudiante(String apellidoEstudiante) {
-		this.apellidoEstudiante = apellidoEstudiante;
+	public void setApellidoEstudiante() {
+		this.apellidoEstudiante = this.estudiante.getApellidoEstudiante();
 	}
 
 	public String getDireccionEstudinate() {
 		return direccionEstudinate;
 	}
 
-	public void setDireccionEstudinate(String direccionEstudinate) {
-		this.direccionEstudinate = direccionEstudinate;
+	public void setDireccionEstudinate() {
+		this.direccionEstudinate = this.estudiante.getDireccionEstudiante();
 	}
 
 	public String getNomProfesor() {
 		return nomProfesor;
 	}
 
-	public void setNomProfesor(String nomProfesor) {
-		this.nomProfesor = nomProfesor;
+	public void setNomProfesor( ) {
+		this.nomProfesor = this.servicio.getProfesor().getNomProfesor();
 	}
 
 	public String getApellidoProfesor() {
 		return apellidoProfesor;
 	}
 
-	public void setApellidoProfesor(String apellidoProfesor) {
-		this.apellidoProfesor = apellidoProfesor;
+	public void setApellidoProfesor() {
+		this.apellidoProfesor = this.servicio.getProfesor().getApellidoProfesor();
 	}
 
 	public float getCalificacion() {
@@ -185,8 +183,8 @@ public class Contrato {
 		return nombreEspecialidad;
 	}
 
-	public void setNombreEspecialidad(String nombreEspecialidad) {
-		this.nombreEspecialidad = nombreEspecialidad;
+	public void setNombreEspecialidad() {
+		this.nombreEspecialidad = this.servicio.getProfesor().getEspecialidad().getNomEspecialidad();
 	}
 	
 }
