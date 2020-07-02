@@ -1,8 +1,11 @@
 package com.pe.app.entidades;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,36 +13,55 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "TP_ESTUDIANTE")
-public class Estudiante {
+public class Estudiante implements Serializable{
 
 	// ***** ATRIBUTOS *****
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEstudiante;
 	
+	@NotEmpty(message ="no puede estar vacio")
+	@Size(min=4, max=12, message="el tamaño tiene que estar entre 4 y 12")
+	@Column(nullable=false)
 	private String nomEstudiante;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String apellidoEstudiante;
 	
+	@Min(value = 0, message = "El Nro. de Reservas tiene un valor minimo de 0")
 	private int nroReservas;
 	
+	@Max(value = 100, message = "la edad maxima es de 100")
+	@Min(value = 16, message = "la edad minima es de 16")
 	private int edad;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String genero;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String celularEstudiante;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String claveEstudiante; // para log-in
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String codigoEstudiante; // codigo del centro de estudios
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String dniEstudiante;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String direccionEstudiante;
 	
 	// Distrito
@@ -47,6 +69,19 @@ public class Estudiante {
 	@JoinColumn(name = "CODIGO_DISTRITO")
 	private Distrito distrito;
 	
+	/*
+	@NotNull(message="la región no puede ser vacia")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="CODIGO_DISTRITO")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonIgnore
+	private Distrito distrito;
+	*/
+	/*
+	// Contrato
+	@OneToMany
+	private List<Contrato> contratos;
+	*/
 	
 	
 	// ***** GETTERS & SETTERS *****
@@ -122,6 +157,15 @@ public class Estudiante {
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
 	}
-	
 
+	/*
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
+	}
+	*/
+	
+	private static final long serialVersionUID = 1L;
 }

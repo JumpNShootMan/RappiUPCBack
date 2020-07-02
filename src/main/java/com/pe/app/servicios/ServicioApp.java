@@ -22,6 +22,7 @@ import com.pe.app.repositorios.RepositorioServicio;
 
 @Service
 public class ServicioApp {
+
 	
 	@Autowired(required=true)
 	private RepositorioDistrito repositorioDistrito;
@@ -152,6 +153,7 @@ public class ServicioApp {
 	// 16) Agregar un Servicio:
 	@Transactional(rollbackOn = Exception.class)
 	public Servicio registrarServicio(Servicio servicio) {
+		servicio.setNombreEspecialidad();
 		return repositorioServicio.save(servicio);
 	}
 	
@@ -168,6 +170,16 @@ public class ServicioApp {
 	// 19) Agregar un Contrato
 	@Transactional(rollbackOn = Exception.class)
 	public Contrato registrarContrato(Contrato contrato) {
+		contrato.setApellidoEstudiante();
+		contrato.setApellidoProfesor();
+		contrato.setDireccionEstudinate();
+		contrato.setNombreServicio();
+		contrato.setNombreEspecialidad();
+		contrato.setNomProfesor();
+		contrato.setNomEstudiante();
+		contrato.setCosto();
+		contrato.setConfirmado("Confirmado");
+
 		/*
 		// Estudiante
 		Estudiante estudiante = repositorioEstudiante.obtener(idEstudiante);
@@ -181,6 +193,7 @@ public class ServicioApp {
 		// Servicio
 		Servicio servicio = null;
 		contrato.setServicio(servicio);*/
+
 		return repositorioContrato.save(contrato);
 	}
 	
@@ -205,18 +218,23 @@ public class ServicioApp {
 		contrato.setServicio(servicio);
 		
 		// Asiganar parametros:
-		contrato.setNombreServicio(servicio.getNomServicio());
+		/*contrato.setNombreServicio(servicio.getNomServicio());
 		contrato.setApellidoProfesor(servicio.getProfesor().getApellidoProfesor());
 		contrato.setNomProfesor(servicio.getProfesor().getNomProfesor());
 		contrato.setDia(servicio.getDia());
 		contrato.setCosto(servicio.getCostoServicio());
-		contrato.setNombreEspecialidad(servicio.getNombreEspecialidad());
+		contrato.setNombreEspecialidad(servicio.getNombreEspecialidad());*/
 		
 		// Guardar Contrato
 		repositorioContrato.save(contrato);
 		String text = "Reserva realizada con exito - Falta confirmacion";
 		return text;
 	}
-
+	
+	// 22) Confirmar
+	public String confirmarReserva(Contrato contrato) {
+		contrato.setConfirmado("Confirmado");
+		return "Funciona";
+	}
 
 }

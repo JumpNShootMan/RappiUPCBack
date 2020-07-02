@@ -37,13 +37,36 @@ public class Servicio {
 	
 
 	// Profesor
+	/*
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PROFESOR")
+<<<<<<< Updated upstream
 
 	private Profesor profesor;
 		
 	private String nombreEspecialidad;
 		
+=======
+	@JsonIgnore
+	private Profesor profesor;
+	*/
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_PROFESOR")
+	private Profesor profesor;
+		
+	private String nombreEspecialidad;
+	
+	/*
+	// Especialidad
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_ESPECIALIDAD")
+	@JsonIgnore
+	private Especialidad especialidad;
+	
+	// Contrato
+	@OneToMany
+	private List<Contrato> contratos;
+	*/
 	
 	// ***** GETTERS & SETTERS *****
 	public Long getIdServicio() {
@@ -78,6 +101,16 @@ public class Servicio {
 		this.costoServicio = costoServicio;
 	}
 
+	/*
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
+	}
+	*/
+
 	public String getDia() {
 		return dia;
 	}
@@ -93,14 +126,9 @@ public class Servicio {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-	
-	public String getNombreEspecialidad() {
-		return nombreEspecialidad;
-	}
 
-	public void setNombreEspecialidad(String nombreEspecialidad) {
-
-		this.nombreEspecialidad = nombreEspecialidad;
+	public void setNombreEspecialidad() {
+		this.nombreEspecialidad = this.profesor.getEspecialidad().getNomEspecialidad();
 	}
 
 	public Profesor getProfesor() {
@@ -109,6 +137,20 @@ public class Servicio {
 
 	public void setProfesor(Profesor profesor) {
 		this.profesor = profesor;
+	}
+
+	/*
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
+	}
+	*/
+
+	public String getNombreEspecialidad() {
+		return nombreEspecialidad;
 	}
 
 }
