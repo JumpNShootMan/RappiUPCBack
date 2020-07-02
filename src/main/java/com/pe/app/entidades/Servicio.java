@@ -98,9 +98,8 @@ public class Servicio {
 		return nombreEspecialidad;
 	}
 
-	public void setNombreEspecialidad(String nombreEspecialidad) {
-
-		this.nombreEspecialidad = nombreEspecialidad;
+	public void setNombreEspecialidad() {
+		this.nombreEspecialidad = this.profesor.getEspecialidad().getNomEspecialidad();
 	}
 
 	public Profesor getProfesor() {

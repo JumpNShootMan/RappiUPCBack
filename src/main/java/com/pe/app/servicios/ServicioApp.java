@@ -152,6 +152,7 @@ public class ServicioApp {
 	// 16) Agregar un Servicio:
 	@Transactional(rollbackOn = Exception.class)
 	public Servicio registrarServicio(Servicio servicio) {
+		servicio.setNombreEspecialidad();
 		return repositorioServicio.save(servicio);
 	}
 	
@@ -168,19 +169,13 @@ public class ServicioApp {
 	// 19) Agregar un Contrato
 	@Transactional(rollbackOn = Exception.class)
 	public Contrato registrarContrato(Contrato contrato) {
-		/*
-		// Estudiante
-		Estudiante estudiante = repositorioEstudiante.obtener(idEstudiante);
-		contrato.setEstudiante(estudiante);
-		contrato.setApellidoEstudiante(estudiante.getApellidoEstudiante());
-		contrato.setNomEstudiante(estudiante.getNomEstudiante());
-		contrato.setDireccionEstudinate(estudiante.getDireccionEstudiante());
-		contrato.setCalificacion(0);
-		contrato.setConfirmado(null);
-		
-		// Servicio
-		Servicio servicio = null;
-		contrato.setServicio(servicio);*/
+		contrato.setApellidoEstudiante();
+		contrato.setApellidoProfesor();
+		contrato.setDireccionEstudinate();
+		contrato.setNombreServicio();
+		contrato.setNombreEspecialidad();
+		contrato.setNomProfesor();
+		contrato.setNomEstudiante();
 		return repositorioContrato.save(contrato);
 	}
 	
@@ -205,12 +200,12 @@ public class ServicioApp {
 		contrato.setServicio(servicio);
 		
 		// Asiganar parametros:
-		contrato.setNombreServicio(servicio.getNomServicio());
+		/*contrato.setNombreServicio(servicio.getNomServicio());
 		contrato.setApellidoProfesor(servicio.getProfesor().getApellidoProfesor());
 		contrato.setNomProfesor(servicio.getProfesor().getNomProfesor());
 		contrato.setDia(servicio.getDia());
 		contrato.setCosto(servicio.getCostoServicio());
-		contrato.setNombreEspecialidad(servicio.getNombreEspecialidad());
+		contrato.setNombreEspecialidad(servicio.getNombreEspecialidad());*/
 		
 		// Guardar Contrato
 		repositorioContrato.save(contrato);
