@@ -191,6 +191,11 @@ public class ControllerApp {
 		return servicioApp.reservar(idServicio, idContrato);
 	}
 
+	@GetMapping("/confirmar")
+	public String confirmar(@RequestBody Contrato contrato)
+	{
+		return servicioApp.confirmarReserva(contrato);
+	}
 
 }
 

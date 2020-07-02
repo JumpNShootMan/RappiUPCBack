@@ -21,7 +21,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override ///Reglas de seguridad de nuestros EndPoints
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/distritos/mostrar", "/api/estudiantes/mostrar", "/api/especialidad/mostrar", "/api/profesores/mostrar", "/api/servicios/mostrar", "/api/contratos/mostrar").permitAll()
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/distritos/mostrar", "/api/estudiantes/mostrar", "/api/especialidad/mostrar", "/api/profesores/mostrar", "/api/servicios/mostrar", "/api/contratos/mostrar", "/api/confirmar").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/profesor/registrarse", "/api/servicio/registrar", "/api/estudiante/registrar", "/api/contrato/registrar").permitAll()//no es necesario el prefijo ROLE_
 		/*.antMatchers(HttpMethod.POST, "/especialidad/registrar").permitAll() // de lo especifico a los genericos
 		.antMatchers(HttpMethod.POST, "/api/clientes").hasRole("ADMIN")

@@ -178,6 +178,7 @@ public class ServicioApp {
 		contrato.setNomProfesor();
 		contrato.setNomEstudiante();
 		contrato.setCosto();
+		contrato.setConfirmado("Confirmado");
 
 		/*
 		// Estudiante
@@ -228,6 +229,12 @@ public class ServicioApp {
 		repositorioContrato.save(contrato);
 		String text = "Reserva realizada con exito - Falta confirmacion";
 		return text;
+	}
+	
+	// 22) Confirmar
+	public String confirmarReserva(Contrato contrato) {
+		contrato.setConfirmado("Confirmado");
+		return "Funciona";
 	}
 
 }
