@@ -51,11 +51,14 @@ public class Contrato {
 	// Estudiante
 	@ManyToOne
 	@JoinColumn(name = "idEstudiante")
+	//@JsonIgnore
 	private Estudiante estudiante;
 	
 	// Servicio
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_SERVICIO")
+
+
 	private Servicio servicio;
 	
 	// ***** GETTERS & SETTERS *****
@@ -175,8 +178,8 @@ public class Contrato {
 		return costo;
 	}
 
-	public void setCosto(double costo) {
-		this.costo = costo;
+	public void setCosto() {
+		this.costo = this.servicio.getCostoServicio();
 	}
 
 	public String getNombreEspecialidad() {

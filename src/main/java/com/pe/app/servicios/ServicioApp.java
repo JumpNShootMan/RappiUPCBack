@@ -22,6 +22,7 @@ import com.pe.app.repositorios.RepositorioServicio;
 
 @Service
 public class ServicioApp {
+
 	
 	@Autowired(required=true)
 	private RepositorioDistrito repositorioDistrito;
@@ -176,6 +177,22 @@ public class ServicioApp {
 		contrato.setNombreEspecialidad();
 		contrato.setNomProfesor();
 		contrato.setNomEstudiante();
+		contrato.setCosto();
+
+		/*
+		// Estudiante
+		Estudiante estudiante = repositorioEstudiante.obtener(idEstudiante);
+		contrato.setEstudiante(estudiante);
+		contrato.setApellidoEstudiante(estudiante.getApellidoEstudiante());
+		contrato.setNomEstudiante(estudiante.getNomEstudiante());
+		contrato.setDireccionEstudinate(estudiante.getDireccionEstudiante());
+		contrato.setCalificacion(0);
+		contrato.setConfirmado(null);
+		
+		// Servicio
+		Servicio servicio = null;
+		contrato.setServicio(servicio);*/
+
 		return repositorioContrato.save(contrato);
 	}
 	
@@ -212,6 +229,5 @@ public class ServicioApp {
 		String text = "Reserva realizada con exito - Falta confirmacion";
 		return text;
 	}
-
 
 }

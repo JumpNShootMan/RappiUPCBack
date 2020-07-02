@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -24,10 +26,17 @@ public class Distrito {
 	@Column(name = "CODIGO_DISTRITO")
 	private Long idDistrito;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String nomDistrito;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String nomProvincia;
 	
+	/*
+	// Estudiante:
+	@OneToMany(mappedBy = "distrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Estudiante> estudiantes;
+	*/
 
 	
 	//Profesores:
@@ -55,6 +64,15 @@ public class Distrito {
 	public void setNomProvincia(String nomProvincia) {
 		this.nomProvincia = nomProvincia;
 	}
+
+	/*
+	public List<Estudiante> getEstudiantes() {
+		return estudiantes;
+	}
+	public void setEstudiantes(List<Estudiante> estudiantes) {
+		this.estudiantes = estudiantes;
+	}
+	*/
 
     public List<Profesor> getProfesores() {
         return profesores;

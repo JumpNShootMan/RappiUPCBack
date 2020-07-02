@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,18 +31,27 @@ public class Profesor {
 	@Column(name = "CODIGO_PROFESOR")
 	private Long idProfesor;
 	
+	@NotEmpty(message ="no puede estar vacio")
+	@Size(min=4, max=12, message="el tamaño tiene que estar entre 4 y 12")
+	@Column(nullable=false)
 	private String nomProfesor;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String apellidoProfesor;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String dniProfesor;
 	
+	@Min(value = 0, message = "El valor minimo es 0")
 	private double pagoMes;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String claveProfesor; // para log-in
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String celularProfesor;
 	
+	@NotEmpty(message ="no puede estar vacio")
 	private String generoProfesor;
 	
 	private float calificacion;
@@ -49,6 +61,14 @@ public class Profesor {
 	@JoinColumn(name = "CODIGO_ESPECIALIDAD")
     private Especialidad especialidad;
 
+	/*
+    @ManyToMany(mappedBy = "profesores")
+    @JsonIgnoreProperties("especialidad")
+    @JsonIgnore
+    private List<Especialidad> especialidades;
+    */
+
+
 	//Distritos a los que atiende
 	 @JoinTable(
 	            name = "tp_profesor_distritos",
@@ -57,10 +77,24 @@ public class Profesor {
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("profesor")
     private List<Distrito> distritos;
-	
-	
-    // Agregar Distrito:
 
+
+	 /*
+	// Servicio
+	@OneToMany
+	private List<Servicio> servicios;
+	
+	// Agregar Especialidad:
+    public void addEspecialidad(Especialidad especialidad) {
+        if (this.especialidades == null) {
+            this.especialidades = new ArrayList<>();
+        }
+
+        this.especialidades.add(especialidad);
+    }
+    */
+
+    // Agregar Distrito:
     public void addDistrito(Distrito distrito) {
         if (this.distritos == null) {
             this.distritos = new ArrayList<>();
@@ -117,12 +151,24 @@ public class Profesor {
 	public void setGeneroProfesor(String generoProfesor) {
 		this.generoProfesor = generoProfesor;
 	}
-    public Especialidad getEspecialidad() {
-        return especialidad;
+
+	/*
+    public List<Especialidad> getEspecialidades() {
+        return especialidades;
+>>>>>>> Stashed changes
     }
     public void setEspecialidades(Especialidad especialidad) {
         this.especialidad = especialidad;
     }
+
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
+	public void setServicios(List<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+	*/
+
     public List<Distrito> getDistritos() {
         return distritos;
     }
@@ -135,6 +181,10 @@ public class Profesor {
 	public void setCalificacion(float calificacion) {
 		this.calificacion = calificacion;
 	}
-	
-
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
+	}
 }

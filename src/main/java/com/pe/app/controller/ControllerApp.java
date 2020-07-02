@@ -3,6 +3,8 @@ package com.pe.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +20,16 @@ import com.pe.app.entidades.Profesor;
 import com.pe.app.entidades.Servicio;
 import com.pe.app.servicios.ServicioApp;
 
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class ControllerApp {
-
 
 	@Autowired(required=true)
 	private ServicioApp servicioApp;
 	
 	// 1)
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/distrito/registrar")
 	public Distrito registrarDistrito(@RequestBody Distrito distrito) {
 		return servicioApp.registrarDistrito(distrito);
@@ -51,6 +54,7 @@ public class ControllerApp {
 	}
 	
 	// 4a)
+	//@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PostMapping("/estudiante/registrar")
 	public Estudiante registrarEstudianteSD(@RequestBody Estudiante estudiante) {
 		return servicioApp.registrarEstudianteSD(estudiante);
@@ -81,6 +85,7 @@ public class ControllerApp {
 	}
 	
 	// 9)
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/especialidad/registrar")
 	public Especialidad registrarEspecialidad(@RequestBody Especialidad especialidad) {
 		return servicioApp.registrarEspecialidad(especialidad);
@@ -107,6 +112,7 @@ public class ControllerApp {
 	*/
 	
 	// 12.1)
+	//@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PostMapping("/profesor/registrarse")
 	public Profesor registrarProfesorSE(@RequestBody Profesor profesor) {
 		return servicioApp.registrarProfesorSE(profesor);
@@ -140,12 +146,14 @@ public class ControllerApp {
 	}
 	
 	// 16)
+	//@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PostMapping("/servicio/registrar")
 	public Servicio registrarServicio(@RequestBody Servicio servicio) {
 		return servicioApp.registrarServicio(servicio);
 	}
 	
 	// 17)
+	//@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/servicios/mostrar")
 	public List<Servicio> mostrarServicios() {
 		return servicioApp.obtenerServicios();
@@ -158,12 +166,14 @@ public class ControllerApp {
 	}
 
 	// 19) 
+	//@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PostMapping("/contrato/registrar")
 	public Contrato registrarContrato(@RequestBody Contrato contrato) {
 		return servicioApp.registrarContrato(contrato);
 	}
 	
 	// 20) 
+	//@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/contratos/mostrar")
 	public List<Contrato> mostrarContratos() {
 		return servicioApp.obtenerContratos();
@@ -180,6 +190,7 @@ public class ControllerApp {
 	public String generarReserva(@PathVariable(value = "idServicio") Long idServicio, @PathVariable(value = "idContrato") Long idContrato) {
 		return servicioApp.reservar(idServicio, idContrato);
 	}
+
 
 }
 
