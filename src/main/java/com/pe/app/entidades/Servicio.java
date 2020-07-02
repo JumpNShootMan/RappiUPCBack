@@ -1,5 +1,6 @@
 package com.pe.app.entidades;
 
+import java.lang.reflect.Constructor;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -34,22 +35,15 @@ public class Servicio {
 	
 	private String hora;
 	
+
 	// Profesor
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PROFESOR")
-	@JsonIgnore
-	private Profesor profesor;
-	
-	// Especialidad
-	@ManyToOne
-	@JoinColumn(name = "CODIGO_ESPECIALIDAD")
-	@JsonIgnore
-	private Especialidad especialidad;
-	
-	// Contrato
-	@OneToMany
-	private List<Contrato> contratos;
 
+	private Profesor profesor;
+		
+	private String nombreEspecialidad;
+		
 	
 	// ***** GETTERS & SETTERS *****
 	public Long getIdServicio() {
@@ -84,14 +78,6 @@ public class Servicio {
 		this.costoServicio = costoServicio;
 	}
 
-	public Especialidad getEspecialidad() {
-		return especialidad;
-	}
-
-	public void setEspecialidad(Especialidad especialidad) {
-		this.especialidad = especialidad;
-	}
-
 	public String getDia() {
 		return dia;
 	}
@@ -107,6 +93,15 @@ public class Servicio {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
+	
+	public String getNombreEspecialidad() {
+		return nombreEspecialidad;
+	}
+
+	public void setNombreEspecialidad(String nombreEspecialidad) {
+
+		this.nombreEspecialidad = nombreEspecialidad;
+	}
 
 	public Profesor getProfesor() {
 		return profesor;
@@ -116,12 +111,4 @@ public class Servicio {
 		this.profesor = profesor;
 	}
 
-	public List<Contrato> getContratos() {
-		return contratos;
-	}
-
-	public void setContratos(List<Contrato> contratos) {
-		this.contratos = contratos;
-	}
-	
 }

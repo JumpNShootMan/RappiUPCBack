@@ -50,14 +50,12 @@ public class Contrato {
 
 	// Estudiante
 	@ManyToOne
-	@JoinColumn(name = "id_estudiante")
-	@JsonIgnore
+	@JoinColumn(name = "idEstudiante")
 	private Estudiante estudiante;
 	
 	// Servicio
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_SERVICIO")
-	@JsonIgnore
 	private Servicio servicio;
 	
 	// ***** GETTERS & SETTERS *****

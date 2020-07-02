@@ -9,4 +9,6 @@ import com.pe.app.entidades.Contrato;
 public interface RepositorioContrato extends JpaRepository<Contrato, Long> {
 	@Query("SELECT c FROM Contrato c WHERE c.idContrato=:idContrato")
 	Contrato obtener(@Param("idContrato") Long idContrato);
+	
+
 }

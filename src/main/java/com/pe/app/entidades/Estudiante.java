@@ -45,12 +45,8 @@ public class Estudiante {
 	// Distrito
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_DISTRITO")
-	@JsonIgnore
 	private Distrito distrito;
 	
-	// Contrato
-	@OneToMany
-	private List<Contrato> contratos;
 	
 	
 	// ***** GETTERS & SETTERS *****
@@ -125,12 +121,6 @@ public class Estudiante {
 	}
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
-	}
-	public List<Contrato> getContratos() {
-		return contratos;
-	}
-	public void setContratos(List<Contrato> contratos) {
-		this.contratos = contratos;
 	}
 	
 
