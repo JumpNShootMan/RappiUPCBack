@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,18 +26,13 @@ public class Distrito {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CODIGO_DISTRITO")
 	private Long idDistrito;
-	
-	@NotEmpty(message ="no puede estar vacio")
+
+	@NotNull(message ="no puede estar vacio")
 	private String nomDistrito;
 	
-	@NotEmpty(message ="no puede estar vacio")
+	@NotNull(message ="no puede estar vacio")
 	private String nomProvincia;
 	
-	/*
-	// Estudiante:
-	@OneToMany(mappedBy = "distrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Estudiante> estudiantes;
-	*/
 
 	
 	//Profesores:

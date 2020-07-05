@@ -9,4 +9,6 @@ import com.pe.app.entidades.Servicio;
 public interface RepositorioServicio extends JpaRepository<Servicio, Long> {
 	@Query("SELECT s FROM Servicio s WHERE s.idServicio=:idServicio")
 	Servicio obtener(@Param("idServicio") Long idServicio);
+
+	
 }

@@ -179,21 +179,17 @@ public class ServicioApp {
 		contrato.setNomEstudiante();
 		contrato.setCosto();
 		contrato.setConfirmado("Confirmado");
-
-		/*
-		// Estudiante
-		Estudiante estudiante = repositorioEstudiante.obtener(idEstudiante);
-		contrato.setEstudiante(estudiante);
-		contrato.setApellidoEstudiante(estudiante.getApellidoEstudiante());
-		contrato.setNomEstudiante(estudiante.getNomEstudiante());
-		contrato.setDireccionEstudinate(estudiante.getDireccionEstudiante());
-		contrato.setCalificacion(0);
-		contrato.setConfirmado(null);
+		Profesor profe = contrato.getServicio().getProfesor();
+		profe.setPagoMes(contrato.getCosto()/10);
+		System.out.println(profe.getPagoMes());
+		System.out.println(contrato.getServicio().getProfesor().getIdProfesor());
+		Estudiante estu = contrato.getEstudiante();
+		estu.setNroReservas(1);
+		System.out.println(estu.getNroReservas());
 		
-		// Servicio
-		Servicio servicio = null;
-		contrato.setServicio(servicio);*/
-
+		repositorioProfesor.save(contrato.getServicio().getProfesor());
+		repositorioEstudiante.save(contrato.getEstudiante());
+		
 		return repositorioContrato.save(contrato);
 	}
 	
@@ -216,14 +212,7 @@ public class ServicioApp {
 		
 		// Conectar
 		contrato.setServicio(servicio);
-		
-		// Asiganar parametros:
-		/*contrato.setNombreServicio(servicio.getNomServicio());
-		contrato.setApellidoProfesor(servicio.getProfesor().getApellidoProfesor());
-		contrato.setNomProfesor(servicio.getProfesor().getNomProfesor());
-		contrato.setDia(servicio.getDia());
-		contrato.setCosto(servicio.getCostoServicio());
-		contrato.setNombreEspecialidad(servicio.getNombreEspecialidad());*/
+
 		
 		// Guardar Contrato
 		repositorioContrato.save(contrato);

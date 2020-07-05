@@ -13,11 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -31,6 +33,7 @@ public class Profesor {
 	@Column(name = "CODIGO_PROFESOR")
 	private Long idProfesor;
 	
+
 	@NotEmpty(message ="no puede estar vacio")
 	@Size(min=4, max=12, message="el tamaño tiene que estar entre 4 y 12")
 	@Column(nullable=false)
@@ -79,21 +82,6 @@ public class Profesor {
     private List<Distrito> distritos;
 
 
-	 /*
-	// Servicio
-	@OneToMany
-	private List<Servicio> servicios;
-	
-	// Agregar Especialidad:
-    public void addEspecialidad(Especialidad especialidad) {
-        if (this.especialidades == null) {
-            this.especialidades = new ArrayList<>();
-        }
-
-        this.especialidades.add(especialidad);
-    }
-    */
-
     // Agregar Distrito:
     public void addDistrito(Distrito distrito) {
         if (this.distritos == null) {
@@ -131,7 +119,7 @@ public class Profesor {
 		return pagoMes;
 	}
 	public void setPagoMes(double pagoMes) {
-		this.pagoMes = pagoMes;
+		this.pagoMes =  this.pagoMes + pagoMes;
 	}
 	public String getClaveProfesor() {
 		return claveProfesor;
