@@ -69,19 +69,6 @@ public class Estudiante implements Serializable{
 	@JoinColumn(name = "CODIGO_DISTRITO")
 	private Distrito distrito;
 	
-	/*
-	@NotNull(message="la región no puede ser vacia")
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="CODIGO_DISTRITO")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@JsonIgnore
-	private Distrito distrito;
-	*/
-	/*
-	// Contrato
-	@OneToMany
-	private List<Contrato> contratos;
-	*/
 	
 	
 	// ***** GETTERS & SETTERS *****
@@ -107,7 +94,7 @@ public class Estudiante implements Serializable{
 		return nroReservas;
 	}
 	public void setNroReservas(int nroReservas) {
-		this.nroReservas = nroReservas;
+		this.nroReservas = this.nroReservas + nroReservas;
 	}
 	public int getEdad() {
 		return edad;
